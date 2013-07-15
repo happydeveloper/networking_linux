@@ -1,11 +1,12 @@
 #include<stdio.h>
 #include<sys/socket.h>
 #include<arpa/inet.h> //inet_addr
-
+#include<string.h> //strlen
 int main(int argc, char *argv[])
 {
 	int socket_desc;
 	struct sockaddr_in server;
+	char *message;
 
 	//create socket
 	socket_desc = socket(AF_INET, SOCK_STREAM, 0);
@@ -27,6 +28,15 @@ int main(int argc, char *argv[])
 	}
 
 	puts("Connected");
+
+	//send some data
+	//약간의 데이타를 보낸다.
+	message = "GET / HTTP/1.1\r\n\r\n";
+	if( send(socket_desc, message, strlen(message), 0) < 0){
+		puts("Send failed");
+		return 1;
+	}
+	puts("Data Send\n");
 
 	return 0;
 }
