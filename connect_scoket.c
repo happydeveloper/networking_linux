@@ -18,8 +18,10 @@ int main(int argc, char *argv[])
 
 //	server.sin_addr.s_addr = inet_addr("220.95.233.172"); //never
 	
-	server.sin_addr.s_addr = inet_addr("114.108.157.19"); //daum
+//	server.sin_addr.s_addr = inet_addr("114.108.157.19"); //daum
 //	server.sin_addr.s_addr = inet_addr("74.125.235.20");
+//	server.sin_addr.s_addr = inet_addr("54.248.60.217"); //ot
+	server.sin_addr.s_addr = inet_addr("87.98.158.89"); // gephi.org
 	server.sin_family = AF_INET;
 	server.sin_port = htons(80);
 
