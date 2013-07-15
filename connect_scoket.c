@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
 {
 	int socket_desc;
 	struct sockaddr_in server;
-	char *message;
+	char *message, server_reply[10000];
 
 	//create socket
 	socket_desc = socket(AF_INET, SOCK_STREAM, 0);
@@ -16,7 +16,10 @@ int main(int argc, char *argv[])
 		printf("Could not create socket");
 	}	
 
-	server.sin_addr.s_addr = inet_addr("74.125.235.20");
+//	server.sin_addr.s_addr = inet_addr("220.95.233.172"); //never
+	
+	server.sin_addr.s_addr = inet_addr("114.108.157.19"); //daum
+//	server.sin_addr.s_addr = inet_addr("74.125.235.20");
 	server.sin_family = AF_INET;
 	server.sin_port = htons(80);
 
@@ -38,5 +41,12 @@ int main(int argc, char *argv[])
 	}
 	puts("Data Send\n");
 
+	//Receive a reply from the server
+	if( recv(socket_desc, server_reply, 2000, 0) < 0)
+	{
+		puts("recv_failed");
+	}
+	puts("Reply received\n");
+	puts(server_reply);
 	return 0;
 }
